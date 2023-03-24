@@ -1,0 +1,33 @@
+{% extends '../index.html' %} {% block css %}
+<style>
+  .register-form {
+    max-width: 720px;
+  }
+</style>
+{% endblock css %} {% load crispy_forms_tags %} 
+{%block title%}Register{%endblock title %}
+<div>
+  {% block content %}
+  <div class="container row d-flex justify-content-center">
+    <form
+      method="POST"
+      class="form-group col-md-6 my-3 register-form"
+      enctype="multipart/form-data"
+    >
+      {% csrf_token %}
+      <h2 class="text-center">Profile info</h2>
+      {{ u_form|crispy }} {{p_form.media}} {{ p_form|crispy }}
+      <div>
+        <button type="submit" class="btn btn-success">Update</button>
+      </div>
+    </form>
+  </div>
+  {% endblock content %}
+</div>
+{% block JS %}
+<script>
+  // $(document).ready(function () {
+  //   $("#id_date_of_birth").attr("type","date")
+  // });
+</script>
+{% endblock JS %}

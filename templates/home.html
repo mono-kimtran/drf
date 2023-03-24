@@ -1,0 +1,54 @@
+{% extends 'index.html' %} {% block css %} {% endblock css %} {% load crispy_forms_tags %} {%block title%}Welcome Psy Web{% endblock title %}
+{% block content %}
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-8">
+      <div class="flask-message">
+        {%if messages %} {% for message in messages%}
+        <div class="alert alert-{{message.tags}}">
+          {% if user.is_authenticated %}
+          {{request.user}} {{message}}
+          {% else %}
+          {{message}}
+          {% endif %}
+        </div>
+      {% endfor %} {%endif %}
+      </div>
+      <div class="book-section border-bottom p-4">
+        <a href="{% url 'blog:create_book'%}">Create A Book</a>
+        {% if books%}
+        {% for book in books %}
+        <div>
+          {{book.title}}
+        </div>
+        {% endfor %}
+        {% endif%}
+      </div>
+      <div class="article-section border-bottom p-4">
+        <a href="{% url 'blog:create_article'%}">Create An Article</a>
+        {% if articles%}
+        {% for article in articles %}
+        <div>
+          <a href="{% url 'blog:article-detail' article.slug %}">{{article.title}}</a>
+        </div>
+        {% endfor %}
+        {% endif%}
+      </div>
+      <div class="contributor-section border-bottom p-4">
+        <a href="{% url 'blog:create_contributor'%}">Create A Contributor</a>
+        {% if contributors%}
+        {% for contributor in contributors %}
+        <div>
+          <a href="{% url 'blog:contributor-detail' contributor.slug %}">{{contributor.full_name}}</a>
+        </div>
+        {% endfor %}
+        {% endif%}
+      </div>
+    </div>
+    <div class="col-md-4">
+
+    </div>
+  </div>
+</div>
+{% endblock content %}
+{% block JS %} {% endblock JS %}

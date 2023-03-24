@@ -1,0 +1,37 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'users/logout.css' %}" />
+    <style>
+      .logout-section {
+          width: 100%;
+          height: 100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+      }
+    </style>
+{% endblock css %}
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+{% block content %}
+<div class="logout-section">
+  <h1>{% trans "Sign Out" %}</h1>
+
+<p>{% trans 'Are you sure you want to sign out?' %}</p>
+
+<form method="post" action="{% url 'account_logout' %}">
+  {% csrf_token %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+  {% endif %}
+  <a class="mx-3" href="{{request.META.HTTP_REFERER}}">{% trans 'Go back' %}</a>
+  <button class="btn btn-danger" type="submit">{% trans 'Sign Out' %}</button>
+</form>
+</div>
+
+
+{% endblock %}
