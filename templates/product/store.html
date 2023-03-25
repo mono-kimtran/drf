@@ -1,4 +1,4 @@
-{% extends 'index.html' %} {% block css %} {% endblock css %} {% load crispy_forms_tags %} {%block title%}Welcome Psy Web{% endblock title %}
+{% extends './index.html' %} {% block css %} {% endblock css %} {% load crispy_forms_tags %} {%block title%}Store{% endblock title %}
 {% block content %}
 <div class="container">
   <div class="row my-3">
@@ -14,9 +14,11 @@
         </div>
       {% endfor %} {%endif %}
       </div>
-      <div class="store-section border-bottom p-4">
+      <div class="product-section">
+        <a href="{% url 'blog:create_book'%}">Create A Product</a>
         
       </div>
+      
     </div>
     <div class="col-md-4">
 

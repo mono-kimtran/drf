@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     'ckeditor',
     'crispy_forms',
     'crispy_bootstrap5',
@@ -51,7 +50,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    'rest_framework',
+    'mptt',
+    'drf_spectacular',
     'users',
+    'product',
 ]
 
 MIDDLEWARE = [
@@ -91,7 +94,6 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 
 
 # Password validation
@@ -191,4 +193,10 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-REST_FRAMEWORK = {}
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'First Django Project API',
+}
